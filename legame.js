@@ -7,19 +7,19 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection) {
     let result='';
     if( computerSelection === playerSelection){
-        result = "Its a tie mane.";
+        result = "It's tie";
     }
     else if(computerSelection === "rock" && playerSelection === "paper"){
-        result = "you won my man";
+        result = "You win";
     }
     else if(computerSelection === "scissors" && playerSelection === "rock"){
-        result = "you won my man";    
+        result = "You win";    
     }
     else if(computerSelection === "paper" && playerSelection === "scissors"){
-        result = "you won my man";
+        result = "You win";
     }
     else{
-        result= "You lost womp womp."
+        result= "You lose"
     }
     return result;
   }
@@ -31,7 +31,7 @@ function playRound(playerSelection, computerSelection) {
     return choice;
     }
     else {
-        alert("pick one of the above"); 
+        alert("Gotta choose one of the choices 下さい");
         gottaChoose();
     }
   }
@@ -40,17 +40,35 @@ function playRound(playerSelection, computerSelection) {
     let playerSelection='';
     let computerSelection='';
     let result='';
-
+    let losses=0;
+    let wins=0;
+    let tied=0;
     for (let i = 0; i < 5; i++) {
         computerSelection=getComputerChoice();
         playerSelection=gottaChoose();
         result= playRound(playerSelection, computerSelection);
         console.log(result);
         console.log(computerSelection);
+        if(result==="You win"){
+            wins++;
+        }
+        else if(result==="You lose"){
+            losses++;
+        }
+        else{
+            tied++;
+        }
 
 
     }
-    return newString;
+    return [wins, losses, tied];
   }
 
-playGame();
+let [x,y,z]=playGame();
+console.log('Wins:',x,' Losses:', y, ' Tied:', z);
+if (x>y){
+    console.lot("You have won")
+}
+else{
+    console.log("You loss womp womp.")
+}
