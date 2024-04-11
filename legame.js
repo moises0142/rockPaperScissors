@@ -37,7 +37,6 @@ function playRound() {
     }
     
     
-    console.log(wins, losses, tied);
     return [wins, losses, tied];
     
 }
@@ -58,14 +57,11 @@ let winOrLose = document.createElement("div")
 rockButton.addEventListener("click", () => {
     playerSelection="rock";
     playGame();
-
-
 })
 
 paperButton.addEventListener("click", () => {
     playerSelection="paper";
     playGame();
-
 })
 
 scissorsButton.addEventListener("click", () =>{
@@ -77,15 +73,19 @@ function playGame(){
 
     let [win,losses,tied]= playRound();
 
-    if(+wins.textContent>=5){
-    winOrLose.textContent="you win";
-    winLossContainer.appendChild(winOrLose);
-    
-    }
-    wins.textContent= +wins.textContent +win;
-    loss.textContent= +loss.textContent + +losses;
-    tie.textContent=  +tie.textContent + +tied;
 
+    wins.textContent= +wins.textContent +win;
+    loss.textContent= +loss.textContent +losses;
+    tie.textContent=  +tie.textContent +tied;
+
+    if(wins.textContent>=5){
+        winOrLose.textContent="you win";
+        winLossContainer.appendChild(winOrLose);
+    }
+    if(loss.textContent>=5){
+        winOrLose.textContent="you lose";
+        winLossContainer.appendChild(winOrLose);
+    }
 
     container.appendChild(wins);
     container2.appendChild(loss);
